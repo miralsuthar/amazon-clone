@@ -2,8 +2,8 @@ import { createClient } from '@supabase/supabase-js';
 import { IListing } from '../../types';
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  'https://sblavexhrfbpuvtgdenq.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyODQwMzQwNSwiZXhwIjoxOTQzOTc5NDA1fQ.gMOythX5QQuIk-a6OELIm0dnNGfCZSBBuV1sb_x4NRY'
 );
 
 export const getListings = async (): Promise<{
@@ -12,6 +12,9 @@ export const getListings = async (): Promise<{
   listings: Array<IListing>;
 }> => {
   const { data, error } = await supabase.from('listings').select('*');
+
+  console.log(data);
+  console.log('error: ', error);
 
   if (error) {
     return {

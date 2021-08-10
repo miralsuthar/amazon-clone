@@ -17,15 +17,17 @@ export default function Home({ listings }: { listings: any }) {
       </Head>
 
       <main>
-        <div className="">
+        <div className="grid grid-cols-3 gap-6 ">
           {listings
             // .filter((listing) => listing.created_by === user.email)
             .map((listing: any) => (
-              <Card
+              <div key={listing.id} className="justify-center"> 
+                <Card
                 // onDelete={() => onDelete(listing.id)}
                 listing={listing}
-                key={listing.id}
+                
               />
+              </div>
             ))}
         </div>
       </main>
