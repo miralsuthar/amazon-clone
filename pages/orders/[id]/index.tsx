@@ -1,9 +1,10 @@
 import { Button } from '@supabase/ui';
 import { useRouter } from 'next/dist/client/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import easyinvoice from 'easyinvoice';
 import { getListingImages } from '../../api/listings';
 import {
+  addReview,
   getListingData,
   getOrders,
   updateDeliveryStatus,
@@ -14,6 +15,8 @@ import { OrderCard } from '../../../components/OrderCard';
 const Index = ({ orders }: { orders: any }) => {
   const router = useRouter();
   const id = router.query.id;
+  const [rating, setRating] = useState(5);
+  const [content, setContent] = useState('');
 
   let invoiceDetail: any;
 
@@ -60,6 +63,21 @@ const Index = ({ orders }: { orders: any }) => {
         };
       });
   }, [orders]);
+
+  const onAddReview = async () => {
+    const currentOrder = orders.find((order: any) => order.id === id);
+    const review = {
+      listing_id: currentOrder.listingData.id,
+      content,
+      rating,
+      created_by: 'nazeeh@gmail.com'
+    }
+    const {data} = await addReview(review, currentOrder.listingData.review_ids);
+
+    if(data) {
+      alert('Review Added Successfully')
+    }
+  } 
 
   return (
     <div className="w-7/12 mx-auto">
@@ -138,6 +156,30 @@ const Index = ({ orders }: { orders: any }) => {
               >
                 Generate invoice
               </Button>
+              <div className='mt-4'>
+                <div className='flex items-center gap-4'>
+                  <div>Rating</div>
+                  <input
+                    className='border-2 rounded-md p-2 w-20'
+                    type='number'
+                    min={1}
+                    max={5}
+                    value={rating}
+                    onChange={(e) => {
+                      setRating(+e.target.value);
+                    }}
+                  />
+                </div>
+                <div className='flex items-start gap-4 mt-4'>
+                  <div>Review</div>
+                  <textarea
+                    className='w-64 h-32 border-2 rounded-md'
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                  />
+                </div>
+                <Button onClick={onAddReview}>Add Review</Button>
+              </div>
             </div>
           </div>
         ))}

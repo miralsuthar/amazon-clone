@@ -58,7 +58,25 @@ export const updatePaymentStatus = async (orderId: string) => {
 };
 
 export const updateDeliveryStatus = async (orderId: any) => {
-  const { data, error } = await supabase.from('orders').update({ delivery_done: true }).eq('id', orderId);
+  const { data, error } = await supabase
+    .from('orders')
+    .update({ delivery_done: true })
+    .eq('id', orderId);
+  return { error, data };
+};
+
+// @ts-ignore
+export const addReview = async (review, oldReviews) => {
+  const { data, error } = await supabase.from('reviews').insert([review]);
+  
+  console.log('review Data: ', data)
+  oldReviews.push(data![0].id);
+
+  await supabase
+    .from('listings')
+    .update({ review_ids: oldReviews })
+    .eq('id', review.listing_id);
+
   return { error, data };
 };
 
