@@ -15,7 +15,7 @@ import { OrderCard } from '../../../components/OrderCard';
 const Index = ({ orders }: { orders: any }) => {
   const router = useRouter();
   const id = router.query.id;
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(3);
   const [content, setContent] = useState('');
 
   let invoiceDetail: any;
@@ -70,11 +70,14 @@ const Index = ({ orders }: { orders: any }) => {
       listing_id: currentOrder.listingData.id,
       content,
       rating,
-      created_by: 'nazeeh@gmail.com'
+      created_by: 'nazeeh@gmail.com',
+      platform: 'amazon'
     }
     const {data} = await addReview(review, currentOrder.listingData.review_ids);
 
     if(data) {
+      setContent('');
+      setRating(3);
       alert('Review Added Successfully')
     }
   } 
@@ -173,12 +176,12 @@ const Index = ({ orders }: { orders: any }) => {
                 <div className='flex items-start gap-4 mt-4'>
                   <div>Review</div>
                   <textarea
-                    className='w-64 h-32 border-2 rounded-md'
+                    className='w-64 h-32 border-2 p-2 rounded-md'
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                   />
                 </div>
-                <Button onClick={onAddReview}>Add Review</Button>
+                <Button className='mt-4' onClick={onAddReview}>Add Review</Button>
               </div>
             </div>
           </div>

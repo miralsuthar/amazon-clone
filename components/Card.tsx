@@ -61,6 +61,7 @@ export const Card = ({
               <h2>
                 Rs. <span className="font-bold">{listing.a_price}</span>
               </h2>
+              <h2>stock: {listing.stock}</h2>
             </div>
             <div className="flex flex-col h-3 gap-2 justify-around items-start"></div>
             <div>
@@ -74,20 +75,24 @@ export const Card = ({
                     setQuantity((prevState) => prevState - 1);
                   }}
                 >
-                  <Button danger={true}>-</Button>
+                  <Button disabled={listing.stock < 1} danger={true}>-</Button>
                 </div>
                 <div>{quantity}</div>
                 <div
                   className="cursor-pointer border-l-2"
                   onClick={() => {
+                    if(quantity >= listing.stock) {
+                      return;
+                    }
+
                     setQuantity((prevState) => prevState + 1);
                   }}
                 >
-                  <Button>+</Button>
+                  <Button disabled={listing.stock < 1}>+</Button>
                 </div>
               </div>
               <div className="w-24 flex justify-center items-center">
-                <Button onClick={onOrderClicked}>Buy now</Button>
+                <Button disabled={listing.stock < 1 || quantity > listing.stock} onClick={onOrderClicked}>Buy now</Button>
               </div>
             </div>
           </div>
