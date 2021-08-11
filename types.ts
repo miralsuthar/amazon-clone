@@ -3,8 +3,9 @@ export interface IListing {
   created_by: string;
   title: string;
   description: string;
-  price: number;
-  sales: number;
+  a_price: number;
+  on_amazon: boolean;
+  a_sales: number;
   stock: number;
   sku: string;
   created_at: string;

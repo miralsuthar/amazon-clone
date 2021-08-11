@@ -11,7 +11,7 @@ export const getListings = async (): Promise<{
   error: any;
   listings: Array<IListing>;
 }> => {
-  const { data, error } = await supabase.from('listings').select('*');
+  const { data, error } = await supabase.from('listings').select('*').eq('on_amazon', true);
 
   console.log(data);
   console.log('error: ', error);

@@ -1,8 +1,6 @@
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
-import Image from 'next/image';
 import { Card } from '../components/Card';
-import styles from '../styles/Home.module.css';
 import { deleteListing, getListingImages, getListings } from './api/listings';
 
 export default function Home({ listings }: { listings: any }) {

@@ -28,7 +28,7 @@ export async function createOrder(order: any, listingSales?: any, listingStocks?
 
   await supabase
     .from('listings')
-    .update({ sales: listingSales + order.qty, stock: listingStocks - order.qty })
+    .update({ a_sales: listingSales + order.qty, stock: listingStocks - order.qty })
     .eq('id', order.listing_id);
   return { error, data };
 }

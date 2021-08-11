@@ -25,12 +25,13 @@ export const Card = ({
       customer_email: 'miralsuthar@gmail.com',
       shipping_to_pincode: 39002,
       qty: quantity,
-      payable_amount: listing.price * quantity,
+      payable_amount: listing.a_price * quantity,
       payment_done: false,
       delivery_done: false,
+      platform: 'amazon',
       created_at: new Date().toISOString(),
     };
-    const { data, error } = await createOrder(order, listing.sales, listing.stock);
+    const { data, error } = await createOrder(order, listing.a_sales, listing.stock);
     if (!error && data) {
       console.log(data);
       console.log(error);
@@ -58,7 +59,7 @@ export const Card = ({
             <div className="flex flex-col h-3 gap-2 justify-around items-start">
               <h2 className="font-bold">{listing.title}</h2>
               <h2>
-                Rs. <span className="font-bold">{listing.price}</span>
+                Rs. <span className="font-bold">{listing.a_price}</span>
               </h2>
             </div>
             <div className="flex flex-col h-3 gap-2 justify-around items-start"></div>
