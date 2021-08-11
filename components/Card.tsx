@@ -48,25 +48,24 @@ export const Card = ({
               style={{ height: '300px', objectFit: 'contain' }}
               src={listing.images[0]}
               key={listing.images[0]}
-              alt='Cover'
+              alt="Cover"
             />
           ) : null,
         ]}
       >
         <div>
-          <div className='flex justify-between items-center'>
-            <div className='flex flex-col h-3 gap-2 justify-around items-start'>
-              <h2 className='font-bold'>{listing.title}</h2>
-              <h2>{listing.sku}</h2>
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col h-3 gap-2 justify-around items-start">
+              <h2 className="font-bold">{listing.title}</h2>
+              <h2>
+                Rs. <span className="font-bold">{listing.price}</span>
+              </h2>
             </div>
-            <div className='flex flex-col h-3 gap-2 justify-around items-start'>
-              <h2>Rs {listing.price}</h2>
-              <h2>{listing.sales} Sales</h2>
-            </div>
+            <div className="flex flex-col h-3 gap-2 justify-around items-start"></div>
             <div>
-              <div className='flex items-center gap-2'>
+              <div className="flex items-center justify-around w-24 mb-4">
                 <div
-                  className='cursor-pointer'
+                  className="cursor-pointer border-r-2"
                   onClick={() => {
                     if (quantity <= 1) {
                       return;
@@ -74,19 +73,21 @@ export const Card = ({
                     setQuantity((prevState) => prevState - 1);
                   }}
                 >
-                  -
+                  <Button danger={true}>-</Button>
                 </div>
                 <div>{quantity}</div>
                 <div
-                  className='cursor-pointer'
+                  className="cursor-pointer border-l-2"
                   onClick={() => {
                     setQuantity((prevState) => prevState + 1);
                   }}
                 >
-                  +
+                  <Button>+</Button>
                 </div>
               </div>
-              <button onClick={onOrderClicked}>Buy now</button>
+              <div className="w-24 flex justify-center items-center">
+                <Button onClick={onOrderClicked}>Buy now</Button>
+              </div>
             </div>
           </div>
           {/* <div className=''>

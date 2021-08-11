@@ -3,7 +3,7 @@ import { getOrders, getListingData } from '../api/orders';
 import { getListingImages } from '../api/listings';
 import { OrderCard } from '../../components/OrderCard';
 
-const Index = ({ orders }: {orders: any}) => {
+const Index = ({ orders }: { orders: any }) => {
   useEffect(() => {
     Promise.all(
       orders.map(async (order: any) => {
@@ -17,13 +17,13 @@ const Index = ({ orders }: {orders: any}) => {
   }, [orders]);
 
   return (
-    <div className='mx-auto grid lg:grid-cols-2 flex-col gap-6'>
+    <div className=" grid lg:grid-cols-3 flex-col gap-2 justify-items-stretch">
       {orders &&
-      // @ts-ignore
+        // @ts-ignore
         orders.map((order, index) => {
           console.log('order from orders.tsx: ', order);
           return (
-            <div key={index}>
+            <div key={index} className="">
               <OrderCard
                 image={order.image}
                 id={order.id}
