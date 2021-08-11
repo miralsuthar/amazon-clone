@@ -7,7 +7,7 @@ const supabase = createClient(
 );
 
 export async function getOrders() {
-  let { data: orders, error } = await supabase.from('orders').select('*');
+  let { data: orders, error } = await supabase.from('orders').select('*').eq('platform', 'amazon');
 
   if (error) {
     return {
