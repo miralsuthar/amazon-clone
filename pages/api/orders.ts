@@ -23,12 +23,12 @@ export async function getOrders() {
   };
 }
 
-export async function createOrder(order: any, listingSales?: any) {
+export async function createOrder(order: any, listingSales?: any, listingStocks?: any) {
   const { data, error } = await supabase.from('orders').insert([order]);
 
   await supabase
     .from('listings')
-    .update({ sales: listingSales + order.qty })
+    .update({ sales: listingSales + order.qty, stock: listingStocks - order.qty })
     .eq('id', order.listing_id);
   return { error, data };
 }

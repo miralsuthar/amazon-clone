@@ -30,7 +30,7 @@ export const Card = ({
       delivery_done: false,
       created_at: new Date().toISOString(),
     };
-    const { data, error } = await createOrder(order, listing.sales);
+    const { data, error } = await createOrder(order, listing.sales, listing.stock);
     if (!error && data) {
       console.log(data);
       console.log(error);

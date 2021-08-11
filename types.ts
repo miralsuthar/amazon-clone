@@ -5,6 +5,7 @@ export interface IListing {
   description: string;
   price: number;
   sales: number;
+  stock: number;
   sku: string;
   created_at: string;
   image_file_names?: string[];
