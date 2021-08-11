@@ -11,7 +11,7 @@ import {
 } from '../../api/orders';
 import { OrderCard } from '../../../components/OrderCard';
 
-const Index = ({ orders }: {orders:any}) => {
+const Index = ({ orders }: { orders: any }) => {
   const router = useRouter();
   const id = router.query.id;
 
@@ -62,7 +62,7 @@ const Index = ({ orders }: {orders:any}) => {
   }, [orders]);
 
   return (
-    <div>
+    <div className="mx-24 ">
       {orders
         .filter((order: any) => order.id === id)
         .map((order: any) => (
@@ -81,15 +81,15 @@ const Index = ({ orders }: {orders:any}) => {
               payableAmount={order.payable_amount}
             />
             <div>
-              <p className='my-2 mt-5'>Order id: {order.id}</p>
-              <p className='my-2'>Title: {order.listingData.title}</p>
-              <p className='my-2'>Customer email: {order.customer_email}</p>
-              <p className='my-2'>Quantity: {order.qty}</p>
-              <p className='my-2'>Amount: {order.payable_amount}</p>
-              <p className='my-2'>Shipping code: {order.shipping_to_pincode}</p>
-              <p className='my-2'>Customer email: {order.customer_email}</p>
+              <p className="my-2 mt-5">Order id: {order.id}</p>
+              <p className="my-2">Title: {order.listingData.title}</p>
+              <p className="my-2">Customer email: {order.customer_email}</p>
+              <p className="my-2">Quantity: {order.qty}</p>
+              <p className="my-2">Amount: {order.payable_amount}</p>
+              <p className="my-2">Shipping code: {order.shipping_to_pincode}</p>
+              <p className="my-2">Customer email: {order.customer_email}</p>
 
-              <div className='flex items-center justify-between mt-4'>
+              <div className="flex items-center justify-between mt-4">
                 <div>
                   Delivery status:{' '}
                   {order.delivery_done ? 'Delivered' : 'Pending'}
@@ -109,7 +109,7 @@ const Index = ({ orders }: {orders:any}) => {
                   </Button>
                 )}
               </div>
-              <div className='flex items-center justify-between mt-4'>
+              <div className="flex items-center justify-between mt-4">
                 <div>
                   Payment status:{' '}
                   {order.payment_done ? 'Successful' : 'Pending'}

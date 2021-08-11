@@ -26,7 +26,7 @@ export const OrderCard = ({
   image,
   title,
 }: Props) => {
-  const router = useRouter()
+  const router = useRouter();
   const { pathname } = router;
   const ordersRoute = pathname === '/orders' ? true : false;
 
@@ -38,28 +38,35 @@ export const OrderCard = ({
           // eslint-disable-next-line @next/next/no-img-element
           <img
             onClick={() => {
-              if(pathname === '/orders') {
+              if (pathname === '/orders') {
                 router.push('/orders/' + id);
               }
             }}
-            className={`h-96 object-contain ${pathname === '/orders' && 'cursor-pointer'}`}
+            className={`h-96 object-contain ${
+              pathname === '/orders' && 'cursor-pointer'
+            }`}
             src={image ? image : '/image.png'}
             alt={'product'}
           />
         }
       >
-        {ordersRoute && <div className="flex justify-between items-center">
-          <div>
-            <p>Title: {title}</p>
-            <p>SKU: {sku}</p>
-            <p>Email: {customerEmail}</p>
+        {ordersRoute && (
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="font-bold text-2xl">{title}</p>
+              <p>SKU: {sku}</p>
+              <p>Email: {customerEmail}</p>
+            </div>
+            <div>
+              <p>
+                Payable amount: Rs.{' '}
+                <span className="font-bold">{payableAmount}</span>
+              </p>
+              {!ordersRoute && <p>Payment: {paymentDone}</p>}
+              {!ordersRoute && <p>Delivery: {deliveryDone}</p>}
+            </div>
           </div>
-          <div>
-            <p>Payable amount: Rs {payableAmount}</p>
-            {!ordersRoute && <p>Payment: {paymentDone}</p>}
-            {!ordersRoute && <p>Delivery: {deliveryDone}</p>}
-          </div>
-        </div>}
+        )}
       </Card>
     </div>
   );
