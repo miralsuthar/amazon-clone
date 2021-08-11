@@ -17,28 +17,32 @@ const Index = ({ orders }: { orders: any }) => {
   }, [orders]);
 
   return (
-    <div className=" grid lg:grid-cols-3 flex-col gap-2 justify-items-stretch">
-      {orders &&
-        // @ts-ignore
-        orders.map((order, index) => {
-          console.log('order from orders.tsx: ', order);
-          return (
-            <div key={index} className="">
-              <OrderCard
-                image={order.image}
-                id={order.id}
-                customerEmail={order.customer_email}
-                shippingCode={order.shipping_to_pincode}
-                qty={order.qty}
-                title={order.listingData.title}
-                paymentDone={order.payment_done}
-                deliveryDone={order.delivery_done}
-                sku={order.listingData.sku}
-                payableAmount={order.payable_amount}
-              />
-            </div>
-          );
-        })}
+    <div>
+      <h2 className='mt-2 mb-4 text-lg font-semibold'>Orders</h2>
+
+      <div className=' grid lg:grid-cols-3 flex-col gap-2 justify-items-stretch'>
+        {orders &&
+          // @ts-ignore
+          orders.map((order, index) => {
+            console.log('order from orders.tsx: ', order);
+            return (
+              <div key={index} className=''>
+                <OrderCard
+                  image={order.image}
+                  id={order.id}
+                  customerEmail={order.customer_email}
+                  shippingCode={order.shipping_to_pincode}
+                  qty={order.qty}
+                  title={order.listingData.title}
+                  paymentDone={order.payment_done}
+                  deliveryDone={order.delivery_done}
+                  sku={order.listingData.sku}
+                  payableAmount={order.payable_amount}
+                />
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };
