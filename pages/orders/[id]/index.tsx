@@ -62,7 +62,7 @@ const Index = ({ orders }: { orders: any }) => {
   }, [orders]);
 
   return (
-    <div className="mx-24 ">
+    <div className="w-7/12 mx-auto">
       {orders
         .filter((order: any) => order.id === id)
         .map((order: any) => (
@@ -80,7 +80,7 @@ const Index = ({ orders }: { orders: any }) => {
               deliveryDone={order.delivery_done}
               payableAmount={order.payable_amount}
             />
-            <div>
+            <div className="w-9/12">
               <p className="my-2 mt-5">Order id: {order.id}</p>
               <p className="my-2">Title: {order.listingData.title}</p>
               <p className="my-2">Customer email: {order.customer_email}</p>
@@ -89,7 +89,7 @@ const Index = ({ orders }: { orders: any }) => {
               <p className="my-2">Shipping code: {order.shipping_to_pincode}</p>
               <p className="my-2">Customer email: {order.customer_email}</p>
 
-              <div className="flex items-center justify-between mt-4">
+              <div className="flex items-center justify-between mt-10">
                 <div>
                   Delivery status:{' '}
                   {order.delivery_done ? 'Delivered' : 'Pending'}
@@ -128,17 +128,16 @@ const Index = ({ orders }: { orders: any }) => {
                     Mark as Paid
                   </Button>
                 )}
-                <Button
-                  onClick={async () => {
-                    const result = await easyinvoice.createInvoice(
-                      invoiceDetail
-                    );
-                    easyinvoice.download('myInvoice.pdf', result.pdf);
-                  }}
-                >
-                  Generate invoice
-                </Button>
               </div>
+              <Button
+                className="mt-5"
+                onClick={async () => {
+                  const result = await easyinvoice.createInvoice(invoiceDetail);
+                  easyinvoice.download('myInvoice.pdf', result.pdf);
+                }}
+              >
+                Generate invoice
+              </Button>
             </div>
           </div>
         ))}

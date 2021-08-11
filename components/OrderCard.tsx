@@ -33,7 +33,7 @@ export const OrderCard = ({
   return (
     <div>
       <Card
-        className="h-full"
+        className="h-full w-9/12"
         cover={
           // eslint-disable-next-line @next/next/no-img-element
           <img
